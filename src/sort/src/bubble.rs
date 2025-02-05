@@ -84,5 +84,11 @@ mod test_sort_mut{
         assert_eq!(v, vec![]);
     }
 
+    #[test]
+    fn sort_mut_single_element_vector() {
+        let mut v: Vec<i32> = vec![2];
+        sort_mut(&mut v);
 
+        assert_eq!(v, vec![2]);
+    }
 }
