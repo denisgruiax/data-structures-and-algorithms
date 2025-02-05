@@ -36,6 +36,14 @@ mod tests {
     }
 
     #[test]
+    fn sort_single_element_vector(){
+        let v: Vec<i32> = vec![1];
+        let v = sort(&v);
+
+        assert_eq!(v, vec![1]);
+    }
+
+    #[test]
     fn sort_simple_vector() {
         let v = vec![10, 7, 9, 18, 9, 13];
         let v = sort(&v);
