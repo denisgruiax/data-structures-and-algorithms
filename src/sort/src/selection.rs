@@ -1,4 +1,4 @@
-pub fn sort_mut<T>(v: &mut Vec<T>) -> ()
+pub fn sort_mut<T>(v: &mut [T]) -> ()
 where
     T: PartialOrd,
 {
