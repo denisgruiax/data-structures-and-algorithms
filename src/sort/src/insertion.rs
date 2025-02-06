@@ -22,9 +22,17 @@ mod test_sort_mut {
 
     #[test]
     fn sort_mut_empty_vector() {
-        let mut v: Vec<i32> = vec![1];
+        let mut v: Vec<i32> = vec![];
         sort_mut(&mut v);
 
-        assert_eq!(v, vec![1]);
+        assert_eq!(v, vec![]);
+    }
+
+    #[test]
+    fn sort_mut_single_element_vector() {
+        let mut v: Vec<i32> = vec![2];
+        sort_mut(&mut v);
+
+        assert_eq!(v, vec![2]);
     }
 }
