@@ -35,4 +35,12 @@ mod test_sort_mut {
 
         assert_eq!(v, vec![2]);
     }
+
+    #[test]
+    fn sort_simple_vector() {
+        let mut v = vec![10, 7, 9, 18, 9, 13];
+        sort_mut(&mut v);
+
+        assert_eq!(v, vec![7, 9, 9, 10, 13, 18]);
+    }
 }
