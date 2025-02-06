@@ -1,4 +1,4 @@
-fn sort<T>(v: &Vec<T>) -> Vec<T>
+pub fn sort<T>(v: &Vec<T>) -> Vec<T>
 where
     T: PartialOrd + Clone,
 {
@@ -23,7 +23,7 @@ where
     acc
 }
 
-fn sort_mut<T>(v: &mut Vec<T>) -> ()
+pub fn sort_mut<T>(v: &mut Vec<T>) -> ()
 where
     T: PartialOrd,
 {
