@@ -1,21 +1,30 @@
 struct LinkedList<'a, T> {
     elt: &'a T,
+    len: usize,
     next: Option<Box<LinkedList<'a, T>>>,
 }
 
 impl<'a, T> LinkedList<'a, T> {
     pub fn new(elt: &'a T) -> LinkedList<'a, T> {
-        LinkedList { elt, next: None }
+        LinkedList {
+            elt,
+            len: 1,
+            next: None,
+        }
     }
 
-    pub fn push(&mut self, elt: &'a T)-> (){
+    pub fn push(&mut self, elt: &'a T) -> () {
         let mut tail = self;
 
         while let Some(ref mut next_node) = tail.next {
             tail = next_node;
         }
-        
-        tail.next = Some(Box::new(LinkedList{elt, next: None}));
+
+        tail.next = Some(Box::new(LinkedList {
+            elt,
+            len: tail.len + 1,
+            next: None,
+        }));
     }
 }
 
@@ -47,7 +56,7 @@ mod test_linked_list {
     }
 
     #[test]
-    fn push_elements(){
+    fn push_elements() {
         let mut list = LinkedList::new(&1);
         list.push(&2);
         list.push(&3);
