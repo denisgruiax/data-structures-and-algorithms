@@ -7,6 +7,16 @@ impl<'a, T> LinkedList<'a, T> {
     pub fn new(elt: &'a T) -> LinkedList<'a, T> {
         LinkedList { elt, next: None }
     }
+
+    pub fn push(&mut self, elt: &'a T)-> (){
+        let mut tail = self;
+
+        while let Some(ref mut next_node) = tail.next {
+            tail = next_node;
+        }
+        
+        tail.next = Some(Box::new(LinkedList{elt, next: None}));
+    }
 }
 
 impl<'a, T> Iterator for LinkedList<'a, T> {
@@ -29,10 +39,21 @@ mod test_linked_list {
     use super::*;
 
     #[test]
-    fn check() {
+    fn new_list() {
         let list = LinkedList::new(&1);
 
-        assert_eq!(1, *list.elt);
+        assert_eq!(*list.elt, 1);
         assert!(list.next.is_none());
+    }
+
+    #[test]
+    fn push_elements(){
+        let mut list = LinkedList::new(&1);
+        list.push(&2);
+        list.push(&3);
+
+        assert_eq!(*list.elt, 1);
+        assert_eq!(*list.next.as_ref().unwrap().elt, 2);
+        assert_eq!(*list.next.as_ref().unwrap().next.as_ref().unwrap().elt, 3);
     }
 }
