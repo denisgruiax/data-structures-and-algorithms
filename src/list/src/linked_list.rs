@@ -26,6 +26,26 @@ impl<'a, T> LinkedList<'a, T> {
             next: None,
         }));
     }
+
+    pub fn get(&mut self, pos: usize) -> Option<&'a T> {
+        let mut list = self;
+
+        match pos {
+            0 => None,
+            1 => Some(list.elt),
+            _ => {
+                while let Some(ref mut next_node) = list.next {
+                    if next_node.len == pos {
+                        return Some(next_node.elt);
+                    }
+
+                    list = next_node;
+                }
+
+                None
+            }
+        }
+    }
 }
 
 impl<'a, T> Iterator for LinkedList<'a, T> {
@@ -75,5 +95,18 @@ mod test_linked_list {
         assert_eq!(list.len, 1);
         assert_eq!(list.next.as_ref().unwrap().len, 2);
         assert_eq!(list.next.as_ref().unwrap().next.as_ref().unwrap().len, 3);
+    }
+
+    #[test]
+    fn get_element() {
+        let mut list = LinkedList::new(&7);
+        list.push(&24);
+        list.push(&68);
+
+        assert_eq!(list.get(0), None);
+        assert_eq!(list.get(1), Some(&7));
+        assert_eq!(list.get(2), Some(&24));
+        assert_eq!(list.get(3), Some(&68));
+        assert_eq!(list.get(4), None);
     }
 }
