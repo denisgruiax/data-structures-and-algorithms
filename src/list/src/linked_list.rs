@@ -48,21 +48,6 @@ impl<'a, T> LinkedList<'a, T> {
     }
 }
 
-impl<'a, T> Iterator for LinkedList<'a, T> {
-    type Item = &'a T;
-
-    fn next(&mut self) -> Option<Self::Item> {
-        let value = self.elt;
-
-        if let Some(next) = self.next.take() {
-            *self = *next;
-            Some(value)
-        } else {
-            None
-        }
-    }
-}
-
 #[cfg(test)]
 mod test_linked_list {
     use super::*;
