@@ -57,13 +57,13 @@ mod test_linked_list {
 
     #[test]
     fn push_elements() {
-        let mut list = LinkedList::new(&1);
-        list.push(&2);
+        let mut list = LinkedList::new(&14);
         list.push(&3);
+        list.push(&9);
 
-        assert_eq!(*list.elt, 1);
-        assert_eq!(*list.next.as_ref().unwrap().elt, 2);
-        assert_eq!(*list.next.as_ref().unwrap().next.as_ref().unwrap().elt, 3);
+        assert_eq!(*list.elt, 14);
+        assert_eq!(*list.next.as_ref().unwrap().elt, 3);
+        assert_eq!(*list.next.as_ref().unwrap().next.as_ref().unwrap().elt, 9);
     }
 
     #[test]
