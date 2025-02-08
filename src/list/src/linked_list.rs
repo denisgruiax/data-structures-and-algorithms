@@ -65,4 +65,15 @@ mod test_linked_list {
         assert_eq!(*list.next.as_ref().unwrap().elt, 2);
         assert_eq!(*list.next.as_ref().unwrap().next.as_ref().unwrap().elt, 3);
     }
+
+    #[test]
+    fn position_of_elements() {
+        let mut list = LinkedList::new(&1);
+        list.push(&2);
+        list.push(&3);
+
+        assert_eq!(list.len, 1);
+        assert_eq!(list.next.as_ref().unwrap().len, 2);
+        assert_eq!(list.next.as_ref().unwrap().next.as_ref().unwrap().len, 3);
+    }
 }
